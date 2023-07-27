@@ -2,9 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX_COLORS 10000
+#define MAX_COLORS 100000
 #define COLOR_LENGTH 12  //RGB,(3+1)*3
 #define MAX_TREE_HT 100
+#define MAX_CODE_LENGTH 256
 
 #define FILE_PATH "Q2.ppm"
 #define ENCODED_PATH "image_encode_step1(Huff).txt"
@@ -29,7 +30,7 @@ typedef struct MinHeap {
 
 typedef struct {
     char color[COLOR_LENGTH];
-    char huffmanCode[256];
+    char huffmanCode[MAX_CODE_LENGTH];
 } ColorCode;
 
 Color colors[MAX_COLORS];
@@ -188,7 +189,7 @@ void getHuffmanCodes(Node* root, int arr[], int top, ColorCode colorCodes[], int
     }
 
     if (isLeaf(root)) {
-        char huffmanCode[256] = "";
+        char huffmanCode[MAX_CODE_LENGTH] = "";
         for (int i = 0; i < top; ++i) {
             char bit[2];
             sprintf(bit, "%d", arr[i]);
@@ -238,7 +239,7 @@ void HuffmanEncode(char color[][12], int freq[], int size) {
         sprintf(currentColor, "%d %d %d", r, g, b);
         for (int i = 0; i < codeCount; i++) {
             if (strcmp(currentColor, colorCodes[i].color) == 0) {
-                fprintf(out, "%s ", colorCodes[i].huffmanCode);
+                fprintf(out, "%s\n", colorCodes[i].huffmanCode);
                 break;
             }
         }
@@ -257,8 +258,8 @@ void rlEncode() {
         return;
     }
 
-    int current, next, count;
-    char line[256];
+    int count;
+    char line[MAX_CODE_LENGTH], current[MAX_CODE_LENGTH], next[MAX_CODE_LENGTH];
 
     // Write header to output file
     while (fgets(line, sizeof(line), fp)) {
@@ -270,21 +271,21 @@ void rlEncode() {
     }
 
     // Initialize count and current value
-    fscanf(fp, "%d", &current);
+    fscanf(fp, "%s", current);
     count = 1;
 
-    while (fscanf(fp, "%d", &next) != EOF) {
-        if (next == current) {
+    while (fscanf(fp, "%s", next) != EOF) {
+        if (strcmp(next,current)==0) {
             count++;
         } else {
-            fprintf(outfile, "%d %d ", current, count);
-            current = next;
+            fprintf(outfile, "%s %d\n", current, count);
+            strcpy(current, next);
             count = 1;
         }
     }
 
     // Write the last group
-    fprintf(outfile, "%d %d\n", current, count);
+    fprintf(outfile, "%s %d\n", current, count);
 
     fclose(fp);
     fclose(outfile);
@@ -337,8 +338,8 @@ int main() {
     //7. output the Huffman encoded file size
     long size_enc = getFileSize(ENCODED_PATH);
     printf("The encoded file(using Huffman) is: %ld bytes\n", size_enc);
-    float rate = (float)size_enc / size_ori;
-    printf("(Compression rate: %.4f)\n", 1-rate);
+    float rate = (float)size_ori / size_enc;
+    printf("(Compression rate: %.4f)\n", rate);
 
     //8. run the rl encode using the Huffman-encoded file
     rlEncode();
@@ -346,8 +347,8 @@ int main() {
     //9. output the Huffman/RL encoded file size
     long size_enc1 = getFileSize(ENCODED_PATH_R);
     printf("The encoded file(using Huffman+RL) is: %ld bytes\n", size_enc1);
-    rate = (float)size_enc1 / size_ori;
-    printf("(Compression rate: %.4f)\n", 1-rate);
+    rate = (float)size_ori / size_enc1;
+    printf("(Compression rate: %.4f)\n", rate);
 
     return 0;
 }

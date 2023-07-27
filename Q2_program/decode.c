@@ -3,14 +3,14 @@
 #include <string.h>
 
 #define MAX_COLORS 10000
-#define MAX_CODE_LENGTH 5
+#define MAX_CODE_LENGTH 256
 
 #define ENCODED_PATH "image_encode_step2(RL).txt"
 #define DECODED_Huffman_PATH "image_decode_step1(Huff).txt"
 #define OUTPUT_PATH "image_decoded.ppm"
 
 typedef struct {
-    char huffman_code[MAX_CODE_LENGTH + 1];
+    char huffman_code[MAX_CODE_LENGTH];
     int r, g, b;
 } color;
 
@@ -99,8 +99,8 @@ void decode_image_RL(char *path) {
         return;
     }
 
-    int value, count;
-    char line[256];
+    int count;
+    char line[256], value[MAX_CODE_LENGTH];
 
     // Write header to output file
     while (fgets(line, sizeof(line), file)) {
@@ -112,9 +112,9 @@ void decode_image_RL(char *path) {
     }
 
     // Decompress rest of file
-    while (fscanf(file, "%d %d", &value, &count) != EOF) {
+    while (fscanf(file, "%s %d", value, &count) != EOF) {
         for (int i = 0; i < count; i++) {
-            fprintf(outfile, "%d\n", value);
+            fprintf(outfile, "%s\n", value);
         }
     }
 
