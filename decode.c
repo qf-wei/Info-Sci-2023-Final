@@ -17,6 +17,7 @@ typedef struct {
 color colors[MAX_COLORS];
 int color_count = 0;
 
+//get the color code for huffman code
 color* find_color(char* code) {
     for(int i = 0; i < color_count; ++i) {
         if(strcmp(colors[i].huffman_code, code) == 0) {
@@ -26,6 +27,7 @@ color* find_color(char* code) {
     return NULL;
 }
 
+//get the file size using the path
 long getFileSize(char* filename) {
     FILE* file = fopen(filename, "rb");
     if (file == NULL) {
@@ -41,12 +43,14 @@ long getFileSize(char* filename) {
 }
 
 void decode_image_Huffman(char *path) {
+    //open the encoded image
     FILE* file = fopen(path, "r");
     int width, height;
+    //read the header for image size
     fscanf(file, "%d %d\n", &width, &height);
 
     char line[256];
-
+    //read the header for (decode)color-index 
     while (fgets(line, sizeof(line), file) != NULL) {
         if (strcmp(line, "-\n") == 0) {
             break;
@@ -57,6 +61,7 @@ void decode_image_Huffman(char *path) {
         colors[color_count++] = c;
     }
 
+    //write the ppm P3 header(size and the P3)
     FILE* output = fopen(OUTPUT_PATH, "w");
     fprintf(output, "P3\n%d %d\n255\n", width, height);
 
@@ -64,6 +69,7 @@ void decode_image_Huffman(char *path) {
     int code_length = 0;
     char ch;
 
+    //write the pixel information
     while ((ch = fgetc(file)) != EOF) {
         if (ch == ' ' || ch == '\n') {
             continue;
@@ -84,6 +90,7 @@ void decode_image_Huffman(char *path) {
 }
 
 void decode_image_RL(char *path) {
+    //open the fully encoded file
     FILE *file = fopen(path, "r");
     FILE *outfile = fopen(DECODED_Huffman_PATH, "w");
 
@@ -116,8 +123,9 @@ void decode_image_RL(char *path) {
 }
 
 int main() {
-
+    //First decode using the RL method
     decode_image_RL(ENCODED_PATH);
+    //then decode using the Huffman method
     decode_image_Huffman(DECODED_Huffman_PATH);
     
     long size = getFileSize(OUTPUT_PATH);
