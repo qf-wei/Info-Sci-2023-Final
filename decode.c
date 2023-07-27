@@ -121,6 +121,6 @@ int main() {
     decode_image_Huffman(DECODED_Huffman_PATH);
     
     long size = getFileSize(OUTPUT_PATH);
-    printf("The encoded file(using Huffman&RL coding) is: %ld bytes\n", size);
+    printf("The decoded file(using Huffman&RL coding) is: %ld bytes\n", size);
     return 0;
 }

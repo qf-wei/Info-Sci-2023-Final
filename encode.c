@@ -205,12 +205,14 @@ void getHuffmanCodes(Node* root, int arr[], int top, ColorCode colorCodes[], int
     }
 
     if (isLeaf(root)) {
-        int huffmanCode = 0;
+        char huffmanCode[256] = "";
         for (int i = 0; i < top; ++i) {
-            huffmanCode = huffmanCode * 2 + arr[i];
+            char bit[2];
+            sprintf(bit, "%d", arr[i]);
+            strcat(huffmanCode, bit);
         }
         strcpy(colorCodes[*codeCount].color, root->color);
-        sprintf(colorCodes[*codeCount].huffmanCode, "%d", huffmanCode);
+        strcpy(colorCodes[*codeCount].huffmanCode, huffmanCode);
         (*codeCount)++;
     }
 }
