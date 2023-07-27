@@ -216,7 +216,7 @@ void HuffmanEncode(char color[][12], int freq[], int size) {
     char line[128];
     int width, height;
     fgets(line, sizeof(line), fp); // Skip the magic number
-    fgets(line, sizeof(line), fp); // Skip the commit
+    fgets(line, sizeof(line), fp); // Skip the comment
     fgets(line, sizeof(line), fp); // Skip the dimensions
     sscanf(line, "%d %d", &width, &height); // Parse width and height
     fgets(line, sizeof(line), fp); // Skip the max color value
