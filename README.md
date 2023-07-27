@@ -1,3 +1,6 @@
+# 大阪大学・情報科学最終レポート（Git Backup）
+### WEI QF
+
 ## 問題 1
 
 <div align="center"><p><img src="./images/1.jpg" width="1280px"><font size="3" color="gray">図１</font></p></div>
