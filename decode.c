@@ -34,11 +34,7 @@ long getFileSize(char* filename) {
     }
 
     fseek(file, 0, SEEK_END); // seek to end of file
-<<<<<<< HEAD
-    long size = ftell(file); // get current file pointer
-=======
     long size = ftell(file); // get file pointer
->>>>>>> 727-1
 
     fclose(file);
     return size;
@@ -46,15 +42,12 @@ long getFileSize(char* filename) {
 
 void decode_image_Huffman(char *path) {
     FILE* file = fopen(path, "r");
-<<<<<<< HEAD
-=======
 
     if (file == NULL || outfile == NULL) {
         printf("Error opening file!\n");
         return;
     }
     
->>>>>>> 727-1
     int width, height;
     fscanf(file, "%d %d\n", &width, &height);
 

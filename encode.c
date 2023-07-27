@@ -15,20 +15,14 @@ typedef struct {
     int freq;
 } Color;
 
-<<<<<<< HEAD
-=======
 //create node for Huffman Tree with color and frequency
->>>>>>> 727-1
 typedef struct Node {
     char color[COLOR_LENGTH];
     unsigned freq;
     struct Node *left, *right;
 } Node;
 
-<<<<<<< HEAD
-=======
 //create Minimum Heap with given capacity
->>>>>>> 727-1
 typedef struct MinHeap {
     unsigned size;
     unsigned capacity;
@@ -94,21 +88,15 @@ MinHeap* createMinHeap(unsigned capacity) {
     return minHeap;
 }
 
-<<<<<<< HEAD
-=======
 
 //swaps two nodes
->>>>>>> 727-1
 void swapNode(Node** a, Node** b) {
     Node* t = *a;
     *a = *b;
     *b = t;
 }
 
-<<<<<<< HEAD
-=======
 //ensure the Minimum Heap property is not violated
->>>>>>> 727-1
 void minHeapify(MinHeap* minHeap, int idx) {
     int smallest = idx;
     int left = 2 * idx + 1;
@@ -130,10 +118,7 @@ int isSizeOne(MinHeap* minHeap) {
     return (minHeap->size == 1);
 }
 
-<<<<<<< HEAD
-=======
 //remove the smallest node from the MinHeap
->>>>>>> 727-1
 Node* extractMin(MinHeap* minHeap) {
     Node* temp = minHeap->array[0];
     minHeap->array[0] = minHeap->array[minHeap->size - 1];
@@ -142,10 +127,7 @@ Node* extractMin(MinHeap* minHeap) {
     return temp;
 }
 
-<<<<<<< HEAD
-=======
 //insert node into the MinHeap.
->>>>>>> 727-1
 void insertMinHeap(MinHeap* minHeap, Node* node) {
     ++minHeap->size;
     int i = minHeap->size - 1;
@@ -156,10 +138,7 @@ void insertMinHeap(MinHeap* minHeap, Node* node) {
     minHeap->array[i] = node;
 }
 
-<<<<<<< HEAD
-=======
 //construct the MinHeap from given array of Nodes
->>>>>>> 727-1
 void buildMinHeap(MinHeap* minHeap) {
     int n = minHeap->size - 1;
     int i;
@@ -167,24 +146,12 @@ void buildMinHeap(MinHeap* minHeap) {
         minHeapify(minHeap, i);
 }
 
-<<<<<<< HEAD
-void printArr(int arr[], int n) {
-    int i;
-    for (i = 0; i < n; ++i)
-        printf("%d", arr[i]);
-    printf("\n");
-}
-=======
->>>>>>> 727-1
 
 int isLeaf(Node* root) {
     return !(root->left) && !(root->right);
 }
 
-<<<<<<< HEAD
-=======
 //create MinHeap with given color frequencie
->>>>>>> 727-1
 MinHeap* createAndBuildMinHeap(char color[][12], int freq[], int size) {
     MinHeap* minHeap = createMinHeap(size);
     for (int i = 0; i < size; ++i)
@@ -194,10 +161,7 @@ MinHeap* createAndBuildMinHeap(char color[][12], int freq[], int size) {
     return minHeap;
 }
 
-<<<<<<< HEAD
-=======
 //build the Huffman Tree
->>>>>>> 727-1
 Node* buildHuffmanTree(char color[][12], int freq[], int size) {
     Node *left, *right, *top;
     MinHeap* minHeap = createAndBuildMinHeap(color, freq, size);
@@ -212,31 +176,7 @@ Node* buildHuffmanTree(char color[][12], int freq[], int size) {
     return extractMin(minHeap);
 }
 
-<<<<<<< HEAD
-void printCodes(Node* root, int arr[], int top) {
-    if (root->left) {
-        arr[top] = 0;
-        printCodes(root->left, arr, top + 1);
-    }
-    if (root->right) {
-        arr[top] = 1;
-        printCodes(root->right, arr, top + 1);
-    }
-    if (isLeaf(root)) {
-        printf("%s: ", root->color);
-        printArr(arr, top);
-    }
-}
-
-void HuffmanCodes(char color[][12], int freq[], int size) {
-    Node* root = buildHuffmanTree(color, freq, size);
-    int arr[MAX_TREE_HT], top = 0;
-    printCodes(root, arr, top);
-}
-
-=======
 //creates Huffman code
->>>>>>> 727-1
 void getHuffmanCodes(Node* root, int arr[], int top, ColorCode colorCodes[], int *codeCount) {
     if (root->left) {
         arr[top] = 0;
@@ -353,10 +293,6 @@ void rlEncode() {
 
 
 int main() {
-<<<<<<< HEAD
-    
-    FILE *fp = fopen(FILE_PATH, "r");
-=======
 
     /*
     1. read the input file
@@ -369,33 +305,21 @@ int main() {
     */
 
     FILE *fp = fopen(FILE_PATH, "r"); //Open the Q2.ppm
->>>>>>> 727-1
     if (fp == NULL) {
         printf("Error opening file\n");
         return -1;
     }
 
-<<<<<<< HEAD
-    long size_ori = getFileSize(FILE_PATH);
-=======
     long size_ori = getFileSize(FILE_PATH); //The size of original Q2.ppm
->>>>>>> 727-1
     printf("The original ppm file is: %ld bytes\n", size_ori);
 
     char line[128];
     fgets(line, sizeof(line), fp); // Skip the magic number
     fgets(line, sizeof(line), fp); // Skip the dimensions
-<<<<<<< HEAD
-    fgets(line, sizeof(line), fp); // Skip the commits
-    fgets(line, sizeof(line), fp); // Skip the max color value
-
-    int r, g, b;
-=======
     fgets(line, sizeof(line), fp); // Skip the comments
     fgets(line, sizeof(line), fp); // Skip the max color value
 
     int r, g, b;  //get 
->>>>>>> 727-1
     char colorStr[COLOR_LENGTH];
     while (fscanf(fp, "%d %d %d", &r, &g, &b) == 3) {
         sprintf(colorStr, "%d %d %d", r, g, b);
@@ -404,11 +328,7 @@ int main() {
 
     fclose(fp);
 
-<<<<<<< HEAD
-    printf("Total unique colors: %d\n", totalColors);
-=======
     printf("Total colors: %d\n", totalColors);
->>>>>>> 727-1
 
     char colorsArr[totalColors][12];
     int freqArr[totalColors];
