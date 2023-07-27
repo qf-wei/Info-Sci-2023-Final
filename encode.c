@@ -15,14 +15,12 @@ typedef struct {
     int freq;
 } Color;
 
-//create node for Huffman Tree with color and frequency
 typedef struct Node {
     char color[COLOR_LENGTH];
     unsigned freq;
     struct Node *left, *right;
 } Node;
 
-//create Minimum Heap with given capacity
 typedef struct MinHeap {
     unsigned size;
     unsigned capacity;
