@@ -35,6 +35,7 @@ typedef struct {
 Color colors[MAX_COLORS];
 int totalColors = 0;
 
+//get the file size using the path
 long getFileSize(char* filename) {
     FILE* file = fopen(filename, "rb");
     if (file == NULL) {
@@ -292,16 +293,7 @@ void rlEncode() {
 
 int main() {
 
-    /*
-    1. read the input file
-    2. get every different colors
-    3. count each color's freq
-    4. make the HuffmanTree using the color and freq
-    5. open the input file again and skip the header
-    6. read each RGB pixel in the input file and get the Huffman code. 
-        Then write it into a new file.
-    */
-
+    //1. read the input file
     FILE *fp = fopen(FILE_PATH, "r"); //Open the Q2.ppm
     if (fp == NULL) {
         printf("Error opening file\n");
@@ -317,6 +309,7 @@ int main() {
     fgets(line, sizeof(line), fp); // Skip the comments
     fgets(line, sizeof(line), fp); // Skip the max color value
 
+    //2. get every different colors
     int r, g, b;  //get 
     char colorStr[COLOR_LENGTH];
     while (fscanf(fp, "%d %d %d", &r, &g, &b) == 3) {
@@ -328,6 +321,7 @@ int main() {
 
     printf("Total colors: %d\n", totalColors);
 
+    //3. count each color's freq
     char colorsArr[totalColors][12];
     int freqArr[totalColors];
     for (int i = 0; i < totalColors; i++) {
@@ -335,15 +329,21 @@ int main() {
         freqArr[i] = colors[i].freq;
     }
 
+    //4. make the HuffmanTree using the color and freq
+    //5. open the input file again and skip the header
+    //6. read each RGB pixel in the input file and get the Huffman code. Then write it into a new file.
     HuffmanEncode(colorsArr, freqArr, totalColors);
 
+    //7. output the Huffman encoded file size
     long size_enc = getFileSize(ENCODED_PATH);
     printf("The encoded file(using Huffman) is: %ld bytes\n", size_enc);
     float rate = (float)size_enc / size_ori;
     printf("(Compression rate: %.4f)\n", 1-rate);
 
-
+    //8. run the rl encode using the Huffman-encoded file
     rlEncode();
+
+    //9. output the Huffman/RL encoded file size
     long size_enc1 = getFileSize(ENCODED_PATH_R);
     printf("The encoded file(using Huffman+RL) is: %ld bytes\n", size_enc1);
     rate = (float)size_enc1 / size_ori;
