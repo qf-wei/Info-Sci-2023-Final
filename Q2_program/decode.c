@@ -5,9 +5,9 @@
 #define MAX_COLORS 10000
 #define MAX_CODE_LENGTH 5
 
-#define ENCODED_PATH "image_encoded_R.txt"
-#define DECODED_Huffman_PATH "image_decoded_H.txt"
-#define OUTPUT_PATH "Q2_decoded.ppm"
+#define ENCODED_PATH "image_encode_step2(RL).txt"
+#define DECODED_Huffman_PATH "image_decode_step1(Huff).txt"
+#define OUTPUT_PATH "image_decoded.ppm"
 
 typedef struct {
     char huffman_code[MAX_CODE_LENGTH + 1];

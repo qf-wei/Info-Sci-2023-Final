@@ -7,8 +7,8 @@
 #define MAX_TREE_HT 100
 
 #define FILE_PATH "Q2.ppm"
-#define ENCODED_PATH "image_encoded_H.txt"
-#define ENCODED_PATH_R "image_encoded_R.txt"
+#define ENCODED_PATH "image_encode_step1(Huff).txt"
+#define ENCODED_PATH_R "image_encode_step2(RL).txt"
 
 typedef struct {
     char color[COLOR_LENGTH]; 
