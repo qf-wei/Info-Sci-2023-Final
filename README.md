@@ -70,7 +70,7 @@
 - 新たなテキストでまず画像サイズと対応関係をHeaderに書き込み、インデックスでピクセル情報を書き込む。
 - しかし今回の二進数ははTXT形式（ASKII）で表しているため、実際二進数で保存されるとさらに小さくなる。
 
-<div align="center"><p><img src="./images/2.png" width="200px"><font size="3" color="gray">図２</font></p></div>
+<div align="center"><p><img src="./images/2.png" width="200px"><font size="3" color="gray">図２(decode画像)</font></p></div>
 
 
 ### (2/3)Program説明
@@ -78,9 +78,12 @@
 
 - 4色の画像だけでなく、最大100000色まで対応可能
 - さらに大きいサイズでも対応可能
-- (80000色・256x256で検証済み)(図２)
+- (7869色・256x256でencode-decode検証済み)(図２参照)
+- GrayScaleは対応不可（P3 Only）
+- (ピクセル数が3の倍数の場合は対応可能だが圧縮率は良くないと想定)
 
-プログラムの流れは以下となる
+プログラムの流れは以下となる  
+（コンパイルの安定性のため.c内のコメントは英語）
 
 #### encode.c  
 1. 画像ファイルを読み取る
@@ -98,6 +101,9 @@
 2. RL法の逆過程を行う（Headerは保持）（decode_step1.txtに出力）
 3. Headerを使いインデックスをRGBに戻す
 4. decoded.txtサイズをPrint
+
+参考：  
+A. Huffman, "A method for the construction of minimum-redundancy codes", Proceedings of the I.R.E., Sept. 1952, pp. 1098-1102
 
 ### (2/3)Program Output・圧縮率
 ```
