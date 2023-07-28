@@ -8,8 +8,8 @@
 #define MAX_CODE_LENGTH 256
 
 #define FILE_PATH "further_test.ppm"
-#define ENCODED_PATH "further_test_out/image_encode_step1(Huff).txt"
-#define ENCODED_PATH_R "further_test_out/image_encode_step2(RL).txt"
+#define ENCODED_PATH "image_encode_step1(Huff).txt"
+#define ENCODED_PATH_R "image_encode_step2(RL).txt"
 
 typedef struct {
     char color[COLOR_LENGTH]; 
