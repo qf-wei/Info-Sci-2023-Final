@@ -1,9 +1,6 @@
 # 情報科学最終レポート
 
 ### WEI QIFENG 09C22052
-プログラムは以下からもご覧になれます。  
-（公開日時08/01 12:00）  
-[GitHub Backup](https://github.com/qf-wei/Info-Sci-2023-Final "GitHub")
 
 ## 問題 1
 
