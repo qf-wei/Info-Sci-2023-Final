@@ -7,7 +7,7 @@
 #define MAX_TREE_HT 100
 #define MAX_CODE_LENGTH 256
 
-#define FILE_PATH "further_test.ppm"
+#define FILE_PATH "Q2.ppm"
 #define ENCODED_PATH "image_encode_step1(Huff).txt"
 #define ENCODED_PATH_R "image_encode_step2(RL).txt"
 
