@@ -1,4 +1,5 @@
-# 大阪大学・情報科学最終レポート（Git Backup）
+# 大阪大学・情報科学最終レポート <br>（Git Backup）
+
 ### WEI QF
 
 ## 問題 1
@@ -67,8 +68,26 @@
     2. [0_0_0_]を[110_]にした場合、1.5（最低圧縮比）
     3. Header含まずの場合、圧縮率は以上の区間と想定される
 - Huffman Treeで作ると[0][10][110][111]のインデックスをそれぞれ頻度によって振り分ける。
-- 新たなテキストでまず画像サイズと対応関係をHeaderに書き込み、インデックスでピクセル情報を書き込む。
+
+    | data | freq | code | size |
+    |:--:|:--:|:--:|:--:|
+    |255_255_255_255_|140|0_|12 -> 2|
+    |0_0_0_|78|10_|6 -> 3|
+    |255_0_0_|60|111_|8 -> 4|
+    |255_255_0_|46|110_|10 -> 4|
+
+    | orig size | encoded size |
+    |:--:|:--:|
+    |12x140 + 6x78 + 8x60 + 10x46|2x140 + 3x78 + 4x60 + 4x46|
+    |3088|938|
+    
+
+    基づいて、データ部分のみを考える場合は  
+    「3088 -> 938」の圧縮が実現できる(圧縮率3.29)。
+
+- デコードのため、新たなテキストでまず画像サイズと対応関係をHeaderに書き込み、インデックスとピクセル情報を書き込む必要がある。
 - しかし今回の二進数ははTXT形式（ASKII）で表しているため、実際二進数で保存されるとさらに小さくなる。
+- 今回のプログラムは便利上、スペースを保留した、実際ではHuffman Treeの仕組みによりスペースを保存しなくても正しくデコードでき、さらなる圧縮が期待できる。
 
 <div align="center"><img src="./images/2.png" width="200px"><img src="./images/4.png" width="200px"><p><font size="3" color="gray">図２(further_test.ppm and Q2.ppm)</font></p></div>
 
@@ -79,6 +98,8 @@
 - 4色の画像だけでなく、最大100000色まで対応可能
 - さらに大きいサイズでも対応可能
 - (7869色・256x256で検証済み)(図２)
+- GrayScaleは対応不可（P3 Only）
+- (ピクセル数が3の倍数の場合は対応可能だが圧縮率は良くないと想定)
 
 プログラムの流れは以下となる
 
@@ -109,6 +130,7 @@ The encoded file(using Huffman) is: 995 bytes
 The encoded file(using Huffman+RL) is: 573 bytes
 (Compression rate: 5.4799)
 
+[さらに大きい画像で実験]
 [With the further_test.ppm]
 The original ppm file is: 760829 bytes
 Total colors: 7869
@@ -117,6 +139,9 @@ The encoded file(using Huffman) is: 495533 bytes
 The encoded file(using Huffman+RL) is: 415712 bytes
 (Compression rate: 1.8302)
 ```
+
+参考：  
+A. Huffman, "A method for the construction of minimum-redundancy codes", Proceedings of the I.R.E., Sept. 1952, pp. 1098-1102
 
 ## 問題 3
 
