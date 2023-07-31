@@ -1,6 +1,9 @@
-# 大阪大学・情報科学最終レポート <br>（Git Backup）
+# 情報科学最終レポート
 
-### WEI QF
+### WEI QIFENG 09C22052
+プログラムは以下からもご覧になれます。  
+（公開日時08/01 12:00）  
+[GitHub Backup](https://github.com/qf-wei/Info-Sci-2023-Final "GitHub")
 
 ## 問題 1
 
@@ -226,7 +229,7 @@ A. Huffman, "A method for the construction of minimum-redundancy codes", Proceed
 - S は 0111 1110 + 1110 0000 = 0101 1110(意味なし)
 これにより、アルゴリズムは終了
 
-### (5)算術演算機能について
+### (6) 算術演算機能について
 この回路は実際にはレジスタBの値（0000 1110）とレジスタXの値（1001）の乗算を実現している。  
 ClockのPalseごとにBとXが一つ前に移動させ、  
 レジスタXのビットが1のところでレジスタBの値が加算される。

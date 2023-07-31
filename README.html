@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>README.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="%E6%83%85%E5%A0%B1%E7%A7%91%E5%AD%A6%E6%9C%80%E7%B5%82%E3%83%AC%E3%83%9D%E3%83%BC%E3%83%88">情報科学最終レポート</h1>
+<h3 id="wei-qifeng-09c22052">WEI QIFENG 09C22052</h3>
+<p>プログラムは以下からもご覧になれます。<br>
+（公開日時08/01 12:00）<br>
+<a href="https://github.com/qf-wei/Info-Sci-2023-Final" title="GitHub">GitHub Backup</a></p>
+<h2 id="%E5%95%8F%E9%A1%8C-1">問題 1</h2>
+<div align="center"><p><img src="./images/1.jpg" width="1280px"><font size="3" color="gray">図１</font></p></div>
+<h3 id="1-%E3%82%B9%E3%83%AA%E3%83%83%E3%83%88%E3%81%AE%E9%96%8B%E3%81%91%E6%96%B9%E3%82%92%E5%B7%A5%E5%A4%AB%E3%81%97%E3%81%9F%E3%82%B3%E3%83%BC%E3%83%89%E5%8C%96%E3%81%AE%E4%BB%95%E7%B5%84%E3%81%BF">(1). スリットの開け方を工夫したコード化の仕組み：</h3>
+<p>今回のエンコーダはAbsolute encoderである。</p>
+<ul>
+<li>Absolute encoderの回転軸に取り付けたスリット付きのディスクによって、回転角度をコード化する仕組みになっている。</li>
+<li>ディスクには独自のパターンでスリットが開けられており、各スリットパターンが固有のコード値に対応している。</li>
+<li>ディスクが1回転するごとに各スリットパターンがセンサーによって読み取られ、それに基づいて回転角度が一意に決定される。</li>
+<li>この方式により、エンコーダが電源を切ったり、回転を停止させたりしても、再度動作する際に正確な回転角度を知ることができるのがメリット。</li>
+</ul>
+<h3 id="2-a%E3%81%A8b%E3%81%AE%E3%83%87%E3%82%A3%E3%82%B9%E3%82%AF%E3%81%A7%E3%81%AE%E3%82%B3%E3%83%BC%E3%83%89%E5%8C%96">(2). (a)と(b)のディスクでのコード化：</h3>
+<p>ディスクが1回転するごとに8つの異なるスリットパターン(n*45deg)が生成され、それぞれが3ビットのグレーコードで表現される。(図１参照)<br>
+具体的には：</p>
+<ul>
+<li>(a)のディスクは3ビットの2進数で回転角度をエンコード。<br>
+ディスクが1回転するごとに8つの異なるスリットパターンが生成され、それぞれが3ビットの2進数で表現されている。</li>
+<li>(b)のディスクは3ビットのグレーコードで回転角度をエンコード。<br>
+グレーコードは連続する値の間で1ビットのみが変化する特徴を持っている。</li>
+</ul>
+<h3 id="3-c%E3%81%AE%E3%83%87%E3%82%A3%E3%82%B9%E3%82%AF%E3%81%AE%E3%82%B3%E3%83%BC%E3%83%89%E5%8C%96%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">(3). (c)のディスクのコード化について：</h3>
+<p>(c)のディスクではスリットの配置が上手く工夫されていないため、回転角度を正確にコード化していない。</p>
+<ul>
+<li>スリットの配置が不十分なため、同じコードが違う位置に配置されている。</li>
+<li>よって、センサーが検知される信号の特異性がなくなり、角度情報を得ることができない。<br>
+(図１参照)</li>
+</ul>
+<h3 id="4-%E3%83%AD%E3%83%90%E3%82%B9%E3%83%88%E6%80%A7%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">(4). ロバスト性について：</h3>
+<p>グレーコードを使用した(b)のディスクは、グレーコードでエンコードされ、エンコードの途中で誤差が生じても1ビットの変化のみ。</p>
+<ul>
+<li>回転角度の変化にロバストに対応しているため、エンコーダとしての信頼性が高いと言える。</li>
+<li>一方、2進数を使用した(a)のディスクは、角度が変化する境界誤差が生じやすく、他の角度値の飛ぶことがある。<br>
+特に高精度の角度検知が必要な場合には不適切とされる。</li>
+</ul>
+<h3 id="5-4%E3%83%93%E3%83%83%E3%83%88%E3%81%A7%E5%9B%9E%E8%BB%A2%E8%A7%92%E3%82%92%E3%82%B3%E3%83%BC%E3%83%89%E5%8C%96%E3%81%99%E3%82%8B%E3%81%9F%E3%82%81%E3%81%AE%E3%82%B9%E3%83%AA%E3%83%83%E3%83%88%E4%BB%98%E3%81%8D%E3%83%87%E3%82%A3%E3%82%B9%E3%82%AF%E3%81%AE%E8%80%83%E6%A1%88">(5). 4ビットで回転角をコード化するためのスリット付きディスクの考案：</h3>
+<p>4ビットのグレーコードで回転角をコード化するためのスリット付きディスクを考案する。</p>
+<ul>
+<li>ディスクには16個のスリットを等間隔で配置し、それぞれが1つのビットに対応する。</li>
+<li>これにより、4ビットのグレーコードを実現できる。<br>
+具体的なスリットの配置は以下のようになる<br>
+（'1'はスリットの開口、'0'はスリットの非開口）</li>
+</ul>
+<p>スリット位置: 1111 1011 1101 1001 1100 1000 1010 1110 0100 0110 0010 0011 0001 0101 0000 0111<br>
+グレーコード: 0000 0001 0011 0010 0110 0111 0101 0100 1100 1101 1111 1110 1010 1011 1001 1000<br>
+(図１参照)</p>
+<ul>
+<li>ディスクが1回転するごとに、スリットのパターンが上記のグレーコード順に変化。</li>
+<li>このディスクを使用すると、1回転あたり16通りの異なるスリットパターンが生成され、それぞれが4ビットのグレーコードで表現される。</li>
+<li>この設計を用いることで、4ビットのグレーコードで回転角を正確にコード化することができる。</li>
+<li>グレーコードは連続する値の間で1ビットのみが変化する特徴を持つため、誤差が生じても角度情報の精度を維持できるのが利点。</li>
+<li>また、16通りのスリットパターンにより高い分解能を実現でき、エンコーダとしてのロバスト性も高められた。</li>
+</ul>
+<h2 id="%E5%95%8F%E9%A1%8C-2">問題 2</h2>
+<h3 id="1-huffman%E5%9C%A7%E7%B8%AE%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">(1). Huffman圧縮について</h3>
+<ul>
+<li>
+<p>今回扱うPPMファイルはRGB形式で四色しかない。</p>
+</li>
+<li>
+<p>かなり高度な圧縮が期待される。</p>
+<ol>
+<li>[255_255_255_]を[0_]にした場合、6（最高圧縮比）</li>
+<li>[0_0_0_]を[110_]にした場合、1.5（最低圧縮比）</li>
+<li>Header含まずの場合、圧縮率は以上の区間と想定される</li>
+</ol>
+</li>
+<li>
+<p>Huffman Treeで作ると[0][10][110][111]のインデックスをそれぞれ頻度によって振り分ける。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">data</th>
+<th style="text-align:center">freq</th>
+<th style="text-align:center">code</th>
+<th style="text-align:center">size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">255_255_255_255_</td>
+<td style="text-align:center">140</td>
+<td style="text-align:center">0_</td>
+<td style="text-align:center">12 -&gt; 2</td>
+</tr>
+<tr>
+<td style="text-align:center">0_0_0_</td>
+<td style="text-align:center">78</td>
+<td style="text-align:center">10_</td>
+<td style="text-align:center">6 -&gt; 3</td>
+</tr>
+<tr>
+<td style="text-align:center">255_0_0_</td>
+<td style="text-align:center">60</td>
+<td style="text-align:center">111_</td>
+<td style="text-align:center">8 -&gt; 4</td>
+</tr>
+<tr>
+<td style="text-align:center">255_255_0_</td>
+<td style="text-align:center">46</td>
+<td style="text-align:center">110_</td>
+<td style="text-align:center">10 -&gt; 4</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">orig size</th>
+<th style="text-align:center">encoded size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">12x140 + 6x78 + 8x60 + 10x46</td>
+<td style="text-align:center">2x140 + 3x78 + 4x60 + 4x46</td>
+</tr>
+<tr>
+<td style="text-align:center">3088</td>
+<td style="text-align:center">938</td>
+</tr>
+</tbody>
+</table>
+<p>基づいて、データ部分のみを考える場合は<br>
+「3088 -&gt; 938」の圧縮が実現できる(圧縮率3.29)。</p>
+</li>
+<li>
+<p>デコードのため、新たなテキストでまず画像サイズと対応関係をHeaderに書き込み、インデックスとピクセル情報を書き込む必要がある。</p>
+</li>
+<li>
+<p>しかし今回の二進数ははTXT形式（ASKII）で表しているため、実際二進数で保存されるとさらに小さくなる。</p>
+</li>
+<li>
+<p>今回のプログラムは便利上、スペースを保留した、実際ではHuffman Treeの仕組みによりスペースを保存しなくても正しくデコードでき、さらなる圧縮が期待できる。</p>
+</li>
+</ul>
+<div align="center"><img src="./images/2.png" width="200px"><img src="./images/4.png" width="200px"><p><font size="3" color="gray">図２(further_test.ppm and Q2.ppm)</font></p></div>
+<h3 id="23program%E8%AA%AC%E6%98%8E">(2/3)Program説明</h3>
+<p>できるだけ汎用のあるプログラム作成した、具体的には以下となる。</p>
+<ul>
+<li>4色の画像だけでなく、最大100000色まで対応可能</li>
+<li>さらに大きいサイズでも対応可能</li>
+<li>(7869色・256x256で検証済み)(図２)</li>
+<li>GrayScaleは対応不可（P3 Only）</li>
+<li>(ピクセル数が3の倍数の場合は対応可能だが圧縮率は良くないと想定)</li>
+</ul>
+<p>プログラムの流れは以下となる</p>
+<h4 id="encodec">encode.c</h4>
+<ol>
+<li>画像ファイルを読み取る</li>
+<li>画像のRGBの種類（色）を取り出す</li>
+<li>それぞれの色の頻度をカウント</li>
+<li>頻度と色でHuffmanTree・インデックスを作成</li>
+<li>新たのファイル(step1.txt)でHeaderを作り、画像サイズ・RGBとインデックスを書き込む</li>
+<li>元画像のRGBを読み取り、変換されたインデックスをstep1.txtに書き込む</li>
+<li>step1.txtのサイズ及び圧縮率をPrint</li>
+<li>さらにstep1.txtに対してRL法（Headerは保持）（step2.txtに出力）</li>
+<li>step2.txtのサイズ及び圧縮率をPrint</li>
+</ol>
+<h4 id="decodec">decode.c</h4>
+<ol>
+<li>step2.txtを読み込む</li>
+<li>RL法の逆過程を行う（Headerは保持）（decode_step1.txtに出力）</li>
+<li>Headerを使いインデックスをRGBに戻す</li>
+<li>decoded.txtサイズをPrint</li>
+</ol>
+<h3 id="23program-output%E3%83%BB%E5%9C%A7%E7%B8%AE%E7%8E%87">(2/3)Program Output・圧縮率</h3>
+<pre class="hljs"><code><div>[With the Q2.ppm]
+The original ppm file is: 3140 bytes
+Total colors: 4
+The encoded file(using Huffman) is: 995 bytes
+(Compression rate: 3.1558)
+The encoded file(using Huffman+RL) is: 573 bytes
+(Compression rate: 5.4799)
+
+[さらに大きい画像で実験]
+[With the further_test.ppm]
+The original ppm file is: 760829 bytes
+Total colors: 7869
+The encoded file(using Huffman) is: 495533 bytes
+(Compression rate: 1.5354)
+The encoded file(using Huffman+RL) is: 415712 bytes
+(Compression rate: 1.8302)
+</div></code></pre>
+<p>参考：<br>
+A. Huffman, &quot;A method for the construction of minimum-redundancy codes&quot;, Proceedings of the I.R.E., Sept. 1952, pp. 1098-1102</p>
+<h2 id="%E5%95%8F%E9%A1%8C-3">問題 3</h2>
+<h3 id="1-74ls147%E3%81%A87447%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">(1). 74LS147と7447について：</h3>
+<ul>
+<li>74LS147は10進数をBCD（バイナリコード化十進数）に変換する優先エンコーダーのIC</li>
+<li>0から9までの数字が選択されると、その数字をBCD形式にエンコードする。</li>
+<li>このエンコーダーは負論理を使用し、選択された数字は低電圧（L）、選択されていない数字は高電圧（H）で表す。</li>
+<li>負論理のため74LS147の出力もnegative logicのためNotを通す。</li>
+<li>7447はBCDから7セグメントディスプレイへのデコーダー。</li>
+<li>これは74LS147からのBCD出力を取得し、7セグメントLEDディスプレイを駆動するためにそれをデコードする。</li>
+<li>よって十進数がディスプレイ上で視覚的に表現される。</li>
+</ul>
+<div align="center"><p><img src="./images/3.jpg" width="1280px"><font size="3" color="gray">図３</font></p></div>
+<h3 id="2-%E5%84%AA%E5%85%88%E3%82%A8%E3%83%B3%E3%82%B3%E3%83%BC%E3%83%80%E3%83%BC%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">(2). 優先エンコーダーについて：</h3>
+<p>キーパッドの複数のキーが同時に押された場合、LEDディスプレイは押されたキーの中で最も大きな数値を表示する。
+これは、74LS147が優先エンコーダーであり、複数の入力が選択された場合でも最大の数値のみを考慮している。
+実際の論理回路にしたがって真値表を作成すると図３の通りになる。</p>
+<h2 id="%E5%95%8F%E9%A1%8C-4">問題 4</h2>
+<h3 id="1-%E5%88%9D%E6%9C%9F%E7%8A%B6%E6%85%8B">(1) 初期状態：</h3>
+<p>最初のクロックパルスが入る前の加算器の出力は、レジスタ A とレジスタ B の内容の加算結果である。<br>
+しかし、レジスタ A は全て 0 なので、したがって</p>
+<ul>
+<li>レジスタ A には 0000 0000</li>
+<li>レジスタ B には 0000 1110</li>
+<li>レジスタ X には 1001</li>
+<li>S は 0000 1110</li>
+</ul>
+<h3 id="2-%E7%AC%AC-1-%E3%82%AF%E3%83%AD%E3%83%83%E3%82%AF%E3%83%91%E3%83%AB%E3%82%B9%E3%81%8C%E5%85%A5%E3%81%A3%E3%81%9F%E6%99%82">(2) 第 1 クロックパルスが入った時：</h3>
+<p>レジスタ X の最初のビットは 1 であり、レジスタ A のクロック信号が有効になる。<br>
+レジスタ A は 8 ビット加算器の出力を格納する。
+レジスタ A と B の現在の値を加算。<br>
+（0000 0000 + 0000 1110 = 0000 1110）</p>
+<p>立ち上がり（PGT）でレジスタ A がこの結果を取り込む。<br>
+同時に、立ち下がり（NGT）でレジスタ B とレジスタ X は右にシフトされる。<br>
+したがって:</p>
+<ul>
+<li>レジスタ A は 0000 1110</li>
+<li>レジスタ B は 0001 1100</li>
+<li>レジスタ X は 0100</li>
+<li>S は 0000 1110 + 0001 1100 = 0010 1010</li>
+</ul>
+<h3 id="3-%E7%AC%AC-2-%E3%82%AF%E3%83%AD%E3%83%83%E3%82%AF%E3%83%91%E3%83%AB%E3%82%B9%E3%81%8C%E5%85%A5%E3%81%A3%E3%81%9F%E6%99%82">(3) 第 2 クロックパルスが入った時：</h3>
+<p>立ち上がり（PGT）で、レジスタ X の次のビットは 0 なので、レジスタ A のクロックは無効となる。<br>
+レジスタ A の状態は変化しない（0000 1110 のまま）。</p>
+<p>立ち下がり（NGT）で、レジスタ B とレジスタ X は右にシフトされる。<br>
+したがって:</p>
+<ul>
+<li>レジスタ A は 0000 1110</li>
+<li>レジスタ B は 0011 1000</li>
+<li>レジスタ X は 0010</li>
+<li>S は 0000 1110 + 0011 1000 = 0100 0110</li>
+</ul>
+<h3 id="4-%E7%AC%AC-3-%E3%82%AF%E3%83%AD%E3%83%83%E3%82%AF%E3%83%91%E3%83%AB%E3%82%B9%E3%81%8C%E5%85%A5%E3%81%A3%E3%81%9F%E6%99%82">(4) 第 3 クロックパルスが入った時：</h3>
+<p>立ち上がり（PGT）で、レジスタ X の次のビットは 0 なので、レジスタ A のクロックは無効となる。<br>
+レジスタ A の状態は変化しない（0000 1110 のまま）。</p>
+<p>立ち下がり（NGT）で、レジスタ B とレジスタ X は右にシフトされる。<br>
+したがって:</p>
+<ul>
+<li>レジスタ A は 0000 1110</li>
+<li>レジスタ B は 0111 0000</li>
+<li>レジスタ X は 0001</li>
+<li>S は 0000 1110 + 0111 0000 = 0111 1110</li>
+</ul>
+<h3 id="5-%E7%AC%AC-4-%E3%82%AF%E3%83%AD%E3%83%83%E3%82%AF%E3%83%91%E3%83%AB%E3%82%B9%E3%81%8C%E5%85%A5%E3%81%A3%E3%81%9F%E6%99%82">(5) 第 4 クロックパルスが入った時：</h3>
+<p>立ち上がり（PGT）で、レジスタ X の次のビットは 1 なので、レジスタ A のクロックは有効になる。<br>
+レジスタ A は 8 ビット加算器の出力を格納する。
+レジスタ A と B の現在の値を加算。<br>
+（0000 1110 + 0111 0000 = 0111 1110）</p>
+<p>立ち下がり（NGT）で、レジスタ B とレジスタ X は右にシフトされる。<br>
+したがって:</p>
+<ul>
+<li>レジスタ A は 0111 1110</li>
+<li>レジスタ B は 1110 0000</li>
+<li>レジスタ X は 0000</li>
+<li>S は 0111 1110 + 1110 0000 = 0101 1110(意味なし)
+これにより、アルゴリズムは終了</li>
+</ul>
+<h3 id="5%E7%AE%97%E8%A1%93%E6%BC%94%E7%AE%97%E6%A9%9F%E8%83%BD%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">(5)算術演算機能について</h3>
+<p>この回路は実際にはレジスタBの値（0000 1110）とレジスタXの値（1001）の乗算を実現している。<br>
+ClockのPalseごとにBとXが一つ前に移動させ、<br>
+レジスタXのビットが1のところでレジスタBの値が加算される。</p>
+<p>これはビット単位の乗算と解釈することができる。<br>
+その結果がレジスタAに格納され、<br>
+最終的なレジスタAの値（0111 1110）はこの乗算の結果を表している。</p>
+
+</body>
+</html>
